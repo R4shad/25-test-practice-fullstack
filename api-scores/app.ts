@@ -4,6 +4,9 @@ import morgan from 'morgan'
 import { Student } from './src/models/Student'
 import { Grade } from './src/models/Grade'
 
+import { studentRoutes } from './src/routes/student.routes'
+import { gradeRoutes } from './src/routes/grade.routes'
+
 export class App {
   app: express.Application
   port: string
@@ -18,6 +21,7 @@ export class App {
 
     this.startServer()
     this.conectDatabase()
+    this.routes()
   }
 
   private startServer() {
@@ -28,10 +32,15 @@ export class App {
 
   private async conectDatabase() {
     try {
-      await Student.sync()
+      await Student.sync({ alter: true })
       await Grade.sync()
     } catch (error) {
       console.error('Unable to connect to the database:', error)
     }
+  }
+
+  private async routes() {
+    this.app.use('/api/student', studentRoutes)
+    this.app.use('/api/grade', gradeRoutes)
   }
 }
