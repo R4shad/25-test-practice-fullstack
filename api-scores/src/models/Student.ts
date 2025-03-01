@@ -1,6 +1,5 @@
 import { DataTypes, Model } from 'sequelize'
 import { sequelize } from './../database/database'
-import { Grade } from './Grade'
 
 export class Student extends Model {
   declare id: number

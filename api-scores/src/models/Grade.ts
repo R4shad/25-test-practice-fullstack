@@ -1,12 +1,11 @@
 import { DataTypes, Model } from 'sequelize'
 import { sequelize } from './../database/database'
-import { Student } from './Student'
 
 export class Grade extends Model {
   declare id: number
   declare studentId: number
   declare subject: string
-  declare grade: string
+  declare grade: number
 }
 
 Grade.init(
@@ -26,7 +25,7 @@ Grade.init(
       allowNull: false,
     },
     grade: {
-      type: DataTypes.STRING(80),
+      type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
     },
   },
