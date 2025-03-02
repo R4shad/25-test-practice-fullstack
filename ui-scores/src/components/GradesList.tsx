@@ -3,11 +3,13 @@ import { useGrades } from '../hooks/useGrades'
 import { GradesForm } from './GradesForm'
 
 const GradesList = () => {
-  const { grades, setGrades, studentId } = useGrades()
-  if (studentId) if (grades.length === 0) return <p>Error</p>
+  const { grades, setGrades, studentId, student } = useGrades()
+
   return (
     <>
-      <h1></h1>
+      <h1>
+        {student?.name} ; {student?.email}
+      </h1>
       <GradesForm setGrades={setGrades} studentId={studentId} />
       <ul>
         {grades &&

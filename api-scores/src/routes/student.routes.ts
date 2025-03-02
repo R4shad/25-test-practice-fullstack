@@ -1,7 +1,13 @@
 import { Router } from 'express'
-import { getStudents, postStudent } from '../controllers/student.controllers'
+import {
+  getStudents,
+  getStudent,
+  postStudent,
+} from '../controllers/student.controllers'
 
 export const studentRoutes = Router()
+
+studentRoutes.get('/:studentId', getStudent)
 
 studentRoutes.get('/', getStudents)
 

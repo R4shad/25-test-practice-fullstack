@@ -70,6 +70,7 @@ button:focus-visible {
 li {
   list-style: square;
   text-align: left;
+  cursor: pointer;
 }
 
 ul {

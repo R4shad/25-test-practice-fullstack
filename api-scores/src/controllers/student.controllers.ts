@@ -11,6 +11,22 @@ export const getStudents = async (req: Request, res: Response) => {
   }
 }
 
+export const getStudent = async (req: Request, res: Response) => {
+  try {
+    const { studentId } = req.params
+    const id = Number(studentId)
+    if (!isNaN(id)) {
+      const students = await Student.findOne({ where: { id } })
+      const status = 200
+      res.status(status).json(students)
+    } else {
+      res.status(500).json({ message: 'student id is needed' })
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error', error })
+  }
+}
+
 export const postStudent = async (req: Request, res: Response) => {
   try {
     const { name, email } = req.body

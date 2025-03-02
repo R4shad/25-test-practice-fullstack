@@ -16,6 +16,20 @@ export const getAllStudents = async () => {
   }
 }
 
+export const getStudent = async (studentId: number) => {
+  try {
+    const response = await fetch(`${API_URL}student/${studentId}`)
+    if (response.ok) {
+      const data: Student = await response.json()
+      return data
+    } else {
+      throw new Error('Error fetching data')
+    }
+  } catch (error) {
+    console.error('Error creating student:', error)
+  }
+}
+
 export const createStudent = async (student: StudentForm) => {
   try {
     const response = await fetch(`${API_URL}student`, {

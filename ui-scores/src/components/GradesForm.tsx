@@ -23,16 +23,15 @@ export const GradesForm: React.FC<Props> = ({ setGrades, studentId }) => {
     e.preventDefault()
     if (formData.subject !== '' && formData.grade !== -1) {
       setError('')
+
       if (studentId) {
         const stdId = Number(studentId)
-        setFormData((prevData) => ({ ...prevData, studentId: stdId }))
-      }
-
-      const data = await createGrade(formData)
-      if (data) {
-        alert('Created')
-        setGrades((prevGrades) => [...prevGrades, data])
-        setFormData(emptyGradeForm)
+        const data = await createGrade({ ...formData, studentId: stdId })
+        if (data) {
+          alert('Created')
+          setGrades((prevGrades) => [...prevGrades, data])
+          setFormData(emptyGradeForm)
+        }
       }
     } else {
       setError('Complete all inputs')

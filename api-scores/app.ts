@@ -39,7 +39,7 @@ export class App {
     }
   }
 
-  private async routes() {
+  private routes() {
     this.app.use('/api/student', studentRoutes)
     this.app.use('/api/grade', gradeRoutes)
   }
