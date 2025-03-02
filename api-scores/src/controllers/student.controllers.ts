@@ -16,11 +16,14 @@ export const getStudent = async (req: Request, res: Response) => {
     const { studentId } = req.params
     const id = Number(studentId)
     if (!isNaN(id)) {
-      const students = await Student.findOne({ where: { id } })
-      const status = 200
-      res.status(status).json(students)
+      const student = await Student.findByPk(id)
+      if (!student) {
+        res.status(404).json({ message: 'Student not found' })
+      } else {
+        res.status(200).json(student)
+      }
     } else {
-      res.status(500).json({ message: 'student id is needed' })
+      res.status(400).json({ message: 'Invalid student ID' })
     }
   } catch (error) {
     res.status(500).json({ message: 'Internal server error', error })

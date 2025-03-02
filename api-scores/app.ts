@@ -32,7 +32,7 @@ export class App {
 
   private async conectDatabase() {
     try {
-      await Student.sync({ alter: true })
+      await Student.sync()
       await Grade.sync()
     } catch (error) {
       console.error('Unable to connect to the database:', error)

@@ -15,7 +15,7 @@ export const GradesForm: React.FC<Props> = ({ setGrades, studentId }) => {
     const { name, value } = e.target
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: name === 'grade' ? Number(value) : value,
     }))
   }
 
@@ -23,7 +23,6 @@ export const GradesForm: React.FC<Props> = ({ setGrades, studentId }) => {
     e.preventDefault()
     if (formData.subject !== '' && formData.grade !== -1) {
       setError('')
-
       if (studentId) {
         const stdId = Number(studentId)
         const data = await createGrade({ ...formData, studentId: stdId })

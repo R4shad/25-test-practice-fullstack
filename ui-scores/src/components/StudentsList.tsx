@@ -1,9 +1,8 @@
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useStudents } from '../hooks/useStudents'
 import { Form } from './Form'
 
 const StudentsList = () => {
-  const navigate = useNavigate()
   const { students, setStudents } = useStudents()
 
   return (
@@ -12,13 +11,10 @@ const StudentsList = () => {
       <ul>
         {students &&
           students.map((student) => (
-            <li
-              onClick={() => {
-                navigate(`/student/${student.id}`)
-              }}
-              key={student.id}
-            >
-              {student.name} :{student.email}
+            <li key={student.id}>
+              <Link to={`/student/${student.id}`}>
+                {student.name} :{student.email}
+              </Link>
             </li>
           ))}
       </ul>
