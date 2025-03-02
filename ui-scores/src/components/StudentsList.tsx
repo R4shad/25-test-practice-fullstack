@@ -5,6 +5,7 @@ import { Form } from './Form'
 const StudentsList = () => {
   const navigate = useNavigate()
   const { students, setStudents } = useStudents()
+
   return (
     <>
       <Form setStudents={setStudents} />

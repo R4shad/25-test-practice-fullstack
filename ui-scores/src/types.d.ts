@@ -18,13 +18,13 @@ export type Grade = {
   subject: string
   grade: number
 }
-export type StudentForm = {
+export type GradeForm = {
   studentId: number
   subject: string
   grade: number
 }
-export const emptyForm = {
+export const emptyGradeForm = {
   studentId: 0,
   subject: '',
-  grade: 0,
+  grade: -1,
 }
